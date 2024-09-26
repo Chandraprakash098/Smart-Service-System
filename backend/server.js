@@ -33,7 +33,10 @@ console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
 // Middleware
 app.use(
   cors({
-    origin: "http://localhost:3000", // or whatever your frontend URL is
+    origin: [
+      "http://localhost:3000",
+      "https://smart-service-system.onrender.com",
+    ],
     credentials: true,
   })
 );
