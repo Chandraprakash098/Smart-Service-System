@@ -38,6 +38,9 @@ const Register = () => {
     }
   };
 
+  
+
+
   return (
     <>
       <h1>SmartUtility System</h1>

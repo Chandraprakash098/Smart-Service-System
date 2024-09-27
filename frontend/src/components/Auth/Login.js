@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Login.css";
+import api from "../../utils/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,6 +25,8 @@ const Login = () => {
       setError("An error occurred during login");
     }
   };
+
+  
 
   return (
     <>

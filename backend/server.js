@@ -31,15 +31,16 @@ console.log("EMAIL_FROM:", process.env.EMAIL_FROM);
 
 
 // Middleware
-app.use(
-  cors({
-    origin: [
-      "http://localhost:3000",
-      "https://smart-service-system.onrender.com",
-    ],
-    credentials: true,
-  })
-);
+// app.use(
+//   cors({
+//     origin: [
+//       "http://localhost:3000",
+//       "https://smart-service-system.onrender.com",
+//     ],
+//     credentials: true,
+//   })
+// );
+app.use(cors()); 
 app.use(express.json());
 
 // Connect to MongoDB
