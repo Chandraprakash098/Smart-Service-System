@@ -6,6 +6,8 @@ import api from "../../utils/api";
 const Dashboard = () => {
   const { user, logout } = useContext(AuthContext);
   const [dashboardData, setDashboardData] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -14,10 +16,13 @@ const Dashboard = () => {
 
   const fetchDashboardData = async () => {
     try {
+      setIsLoading(true);
+      setError(null);
       const response = await api.get(`/dashboard/${user.role}`);
       setDashboardData(response.data);
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
+      setError("Failed to load dashboard data. Please try again later.");
     }
   };
 

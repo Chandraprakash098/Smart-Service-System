@@ -33,25 +33,35 @@ exports.getDashboard = async (req, res) => {
 };
 
 async function getAdminDashboard() {
-  const recentUtilities = await Utility.find().sort({ date: -1 }).limit(5);
-  const pendingServices = await Service.find({ status: "pending" }).limit(5);
-  const recentPayments = await Payment.find()
-    .sort({ createdAt: -1 })
-    .limit(5)
-    .populate("user", "email name"); // Populate the user field with email
+  try {
+    const recentUtilities = await Utility.find().sort({ date: -1 }).limit(5);
+    const pendingServices = await Service.find({ status: "pending" }).limit(5);
+    const recentPayments = await Payment.find()
+      .sort({ createdAt: -1 })
+      .limit(5)
+      .populate("user", "email name"); // Populate the user field with email
 
-  return {
-    recentUtilities,
-    pendingServices,
-    recentPayments: recentPayments.map((payment) => ({
-      _id: payment._id,
-      amount: payment.amount,
-      status: payment.status,
-      userEmail: payment.user.email,
-      userName: payment.user.name,
-    })),
-  };
+    return {
+      recentUtilities,
+      pendingServices,
+      recentPayments: recentPayments.map((payment) => ({
+        _id: payment._id,
+        amount: payment.amount,
+        status: payment.status,
+        // userEmail: payment.user.email,
+        // userName: payment.user.name,
+        userEmail: payment.user ? payment.user.email : "N/A",
+        userName: payment.user ? payment.user.name : "Unknown User",
+      })),
+    };
+  } catch (error) {
+    console.error("Error in getAdminDashboard:", error);
+    throw new Error("Failed to fetch admin dashboard data");
+  }
 }
+
+
+
 
 // ... rest of the code remains the same
 
