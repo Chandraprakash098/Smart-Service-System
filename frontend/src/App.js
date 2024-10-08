@@ -23,6 +23,7 @@ import ReviewService from "./components/Service/ReviewService";
 import StartService from "./components/Service/StartService";
 import CompleteService from "./components/Service/CompleteService";
 import Home from "./components/page/Home";
+import CoverageDetails from "./components/Map/CoverageDetails";
 
 const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY);
 
@@ -44,6 +45,7 @@ const App = () => {
           <div className="App">
             <Routes>
               <Route path="/home" element={<Home />} />
+              <Route path="/coverage-details" element={<CoverageDetails />} />
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/" element={<Navigate to="/home" />} />

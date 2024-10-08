@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { Building, Zap, Calendar, MessageCircle } from "lucide-react";
 import { AuthContext } from "../../contexts/AuthContext"; // Import AuthContext
+import IndiaMap from "../Map/IndiaMap";
 
 const FeatureCard = ({ icon: Icon, title, description }) => (
   <div className="bg-white shadow-lg rounded-lg p-6 flex flex-col items-center text-center transition-transform transform hover:scale-105">
@@ -69,6 +70,35 @@ const Home = () => {
           >
             Click To Go To Dashboard
           </button>
+        </section>
+
+        {/* Add Map Section here */}
+        <section className="py-12 bg-white">
+          <div className="container mx-auto px-4">
+            <h2 className="text-3xl font-bold text-center mb-8">
+              Our Service Coverage
+            </h2>
+            <div className="max-w-5xl mx-auto">
+              <div className="bg-white rounded-lg shadow-lg p-4 md:p-6">
+                <div className="h-[500px]">
+                  <IndiaMap />
+                </div>
+              </div>
+              <div className="mt-6 text-center">
+                <p className="text-gray-600 mb-4">
+                  SmartUtility System is expanding across India, providing
+                  comprehensive utility management solutions to residential
+                  societies.
+                </p>
+                <button
+                  onClick={() => navigate("/coverage-details")}
+                  className="bg-blue-600 text-white py-2 px-6 rounded-full text-lg shadow-lg transition duration-300 hover:bg-blue-700"
+                >
+                  Check Availability in Your Area
+                </button>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Features section */}
